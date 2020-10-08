@@ -100,8 +100,8 @@ class _SearchMapPlaceWidgetState extends State<SearchMapPlaceWidget>
   @override
   void initState() {
     geocode = Geocoding(apiKey: widget.apiKey, language: widget.language);
-    _animationController = AnimationController(
-        TickerProvider: this, duration: Duration(milliseconds: 500));
+    _animationController =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 500));
     _containerHeight = Tween<double>(begin: 55, end: 364).animate(
       CurvedAnimation(
         curve: Interval(0.0, 0.5, curve: Curves.easeInOut),
@@ -337,7 +337,7 @@ class _SearchMapPlaceWidgetState extends State<SearchMapPlaceWidget>
       _textEditingController.value = TextEditingValue(
         text: prediction.description,
         selection: TextSelection.collapsed(
-          int: prediction.description.length,
+          offset: prediction.description.length,
         ),
       );
     } else {
